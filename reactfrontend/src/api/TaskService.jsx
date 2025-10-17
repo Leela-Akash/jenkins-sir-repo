@@ -1,6 +1,8 @@
 import axios from "axios";
+import config from "../components/config"; // ✅ imported config
 
-const API_URL = `${import.meta.env.VITE_API_URL}/api/tasks`;
+// ✅ Use config.VITE_API_URL instead of import.meta.env
+const API_URL = `${config.VITE_API_URL}/api/tasks`;
 
 class TaskService {
   getAllTasks() {
@@ -11,8 +13,7 @@ class TaskService {
     return axios.get(`${API_URL}/get/${id}`);
   }
 
-  createTask(task) 
-  {
+  createTask(task) {
     console.log("Backend API base URL:", API_URL);
     return axios.post(`${API_URL}/add`, task);
   }
@@ -24,7 +25,6 @@ class TaskService {
   updateStatus(id, task) {
     return axios.put(`${API_URL}/updatestatus/${id}`, task);
   }
-
 
   deleteTask(id) {
     return axios.delete(`${API_URL}/delete/${id}`);
